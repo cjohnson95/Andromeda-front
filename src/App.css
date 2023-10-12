@@ -21,7 +21,7 @@ p {
 .button {
   display: inline-block;
 
-  color: white;
+  color: rgb(238, 160, 198);
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -49,4 +49,46 @@ p {
 body {
   background-image: url("https://media.tenor.com/oqt69E8cWukAAAAC/zodiac-zodiacs.gif"); /* Replace with the correct path or URL to your GIF file */
   background-size: cover;
+}
+
+.create-new-order {
+  background-color: #552891;
+  color: rgb(237, 101, 160);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.add-to-cart {
+  background-color: #552891;
+  color: rgb(237, 101, 160);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.cancel-order {
+  background-color: #552891;
+  color: rgb(237, 101, 160);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.save-order{
+  background-color: #552891;
+  color: rgb(237, 101, 160);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+h2{
+  font-size: 30px;
+  color: #f23bd4;
+  margin-bottom: 10px;
+  
 }

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../App.css'; 
+
+
+
+
 import {
   createOrder,
   getOrders,
@@ -8,6 +13,8 @@ import {
 } from "../services/ordersApi";
 
 export default function NewOrder() {
+  const [cart, setCart] = useState([]);
+
   const [creatingOrder, setCreatingOrder] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
   const [deletingOrder, setDeletingOrder] = useState(null);
@@ -15,7 +22,7 @@ export default function NewOrder() {
   const [orderDetails, setOrderDetails] = useState({
     itemName: "",
     quantity: 0,
-    itemPrice: 0, // Add your itemPrice field
+    itemPrice: 0, 
   });
 
   useEffect(() => {
@@ -34,7 +41,7 @@ export default function NewOrder() {
     setOrderDetails({
       itemName: "",
       quantity: 0,
-      itemPrice: 0, // Add your itemPrice field
+      itemPrice: 0, 
     });
   };
 
@@ -73,10 +80,14 @@ export default function NewOrder() {
       .catch((error) => console.error(error));
   };
 
+  const addToCart = (item) => {
+    setCart((prevCart) => [...prevCart, item]);
+  };
+
   return (
     <div>
       <h1>Place Order</h1>
-      <button onClick={() => setCreatingOrder(true)}>Create New Order</button>
+      <button className="create-new-order" onClick={() => setCreatingOrder(true)}>Create New Order</button>
 
       <ul>
         {orders.map((order) => (
@@ -93,8 +104,8 @@ export default function NewOrder() {
           <p>Are you sure you want to delete this order?</p>
           <p>Item Name: {deletingOrder.itemName}</p>
           <p>Quantity: {deletingOrder.quantity}</p>
-          <button onClick={handleDeleteOrder}>Yes, Delete</button>
-          <button onClick={() => setDeletingOrder(null)}>Cancel</button>
+          <button className= "delete-order"onClick={handleDeleteOrder}>Yes, Delete</button>
+          <button className= "cancel-order" onClick={() => setDeletingOrder(null)}>Cancel</button>
         </div>
       )}
 
@@ -107,6 +118,7 @@ export default function NewOrder() {
             setOrderDetails({ ...orderDetails, itemName: e.target.value })
           }
         />
+      
         <input
           type="number"
           placeholder="Quantity"
@@ -131,12 +143,27 @@ export default function NewOrder() {
           <button type="submit">Create</button>
         ) : (
           <>
-            <button type="submit">Save</button>
-            <button onClick={() => setEditingOrder(null)}>Cancel</button>
+            <button className='save-order' type="submit">Save</button>
+            {/* <button onClick={() => setCreatingOrder(null)}>Save</button> */}
           </>
         )}
-        <button onClick={() => setCreatingOrder(false)}>Cancel</button>
+        <button className="cancel-order"onClick={() => setCreatingOrder(false)}>Cancel</button>
       </form>
+
+      <h2>Cart</h2>
+      <ul>
+        {cart.map((cartItem, index) => (
+          <li key={index}>
+            {cartItem.itemName} - Quantity: {cartItem.quantity}
+            - Total Price: {cartItem.quantity * cartItem.itemPrice}
+          </li>
+        ))}
+      </ul>
+
+     
+      <button className= "add-to-cart"onClick={() => addToCart(orderDetails)}>
+        Add to Cart
+      </button>
     </div>
   );
 }

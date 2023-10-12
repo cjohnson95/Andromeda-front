@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import MenuItem from "./MenuItem";
 import { getMenuItems } from "../services/menuApi";
+import '../App.css'; 
+
 // import NavigationBar from "../components/NavBar";
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export default function Menu() {
-  const [menuItems, setMenuItems] = useState([]);
-
+   const [menuItems, setMenuItems] = useState([]);
+   
   useEffect(() => {
     getMenuItems()
       .then((response) => {
@@ -20,7 +22,7 @@ export default function Menu() {
 
   return (
     <div>
-      <h2>Menu</h2>
+      <h1>Menu</h1>
       <ul>
         {menuItems.map((menuItem) => (
           <MenuItem
